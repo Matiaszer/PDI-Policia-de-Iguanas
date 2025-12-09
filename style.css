@@ -5,60 +5,125 @@
     --muted:#6b6b6b;
     --trap:#2aa34a;
     --free:#d9534f;
-    --radius:10px;
+    --radius:12px;
     --max:980px;
     font-family: "Segoe UI", Roboto, Arial, sans-serif;
-    color-scheme: light;
+    color-scheme: light dark;
+}
+
+@media (prefers-color-scheme: dark) {
+    :root{
+        --bg:#152015;
+        --card:#1e2b1e;
+        --accent:#6dd36d;
+        --muted:#b8c4b8;
+    }
 }
 
 *{box-sizing:border-box;margin:0;padding:0}
+
 body{
-    background: linear-gradient(180deg,#e8f7e8 0%,var(--bg) 40%);
+    background:linear-gradient(180deg,#e8f7e8 0%,var(--bg) 40%);
     color:#123;
-    -webkit-font-smoothing:antialiased;
-    -moz-osx-font-smoothing:grayscale;
     line-height:1.5;
+    transition:background .3s,color .3s;
 }
 
+/* HERO */
 .hero{
     background:linear-gradient(90deg, rgba(43,122,43,0.12), rgba(43,122,43,0.04));
     padding:40px 16px;
     border-bottom:1px solid rgba(0,0,0,0.04);
 }
 .hero .wrap{max-width:var(--max);margin:0 auto}
-h1{font-size:2rem;color:var(--accent);letter-spacing:0.4px}
+h1{font-size:2rem;color:var(--accent);letter-spacing:.4px}
 .tagline{color:var(--muted);margin-top:6px}
 
+/* MAIN LAYOUT */
 .container{
     max-width:var(--max);
     margin:22px auto;
     padding:0 16px 60px;
 }
 
-section{background:var(--card);padding:18px;border-radius:var(--radius);box-shadow:0 6px 18px rgba(15,20,15,0.04);margin-bottom:14px}
+section{
+    background:var(--card);
+    padding:18px;
+    border-radius:var(--radius);
+    box-shadow:0 6px 18px rgba(15,20,15,0.08);
+    margin-bottom:16px;
+    transition:background .3s, box-shadow .3s;
+}
+
+section:hover{
+    box-shadow:0 8px 22px rgba(15,20,15,0.12);
+}
+
 h2{color:var(--accent);margin-bottom:8px}
 p{color:#2b2b2b}
 
+/* METHODS */
 .methods{list-style:disc inside;margin-left:10px}
-.note{font-size:0.95rem;color:var(--muted);margin-bottom:8px}
+.note{font-size:.95rem;color:var(--muted);margin-bottom:8px}
 
-/* criminals list */
-.criminals{list-style:none;padding:0;margin:0;display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:12px}
-.criminals li{padding:12px;border-radius:8px;background:linear-gradient(180deg,rgba(0,0,0,0.01),transparent);display:flex;flex-direction:column;gap:8px;min-height:110px}
-.criminals .name{font-weight:700;color:#123}
-.criminals .desc{font-size:0.9rem;color:var(--muted);margin-top:4px}
-.badge{margin-left:auto;padding:6px 10px;border-radius:999px;font-weight:700;font-size:0.85rem;color:#fff}
-.trapped{background:var(--trap);box-shadow:0 2px 6px rgba(42,163,74,0.16)}
-.free{background:var(--free);box-shadow:0 2px 6px rgba(217,83,79,0.16)}
+/* CRIMINALS GRID */
+.criminals{
+    list-style:none;
+    display:grid;
+    gap:12px;
+    grid-template-columns:repeat(auto-fit,minmax(260px,1fr));
+}
 
-/* layout tweaks for list items */
-.criminals li{display:block;position:relative;padding:12px 14px}
-.criminals li .badge{position:absolute;right:12px;top:12px}
+.criminals li{
+    position:relative;
+    padding:14px;
+    background:linear-gradient(180deg,rgba(0,0,0,0.03),transparent);
+    border-radius:var(--radius);
+    min-height:110px;
+    transition:transform .2s, box-shadow .2s;
+}
 
-/* footer */
-.site-footer{max-width:var(--max);margin:20px auto 80px;padding:12px 16px;text-align:center;color:var(--muted);font-size:0.9rem}
+.criminals li:hover{
+    transform:translateY(-3px);
+    box-shadow:0 10px 20px rgba(0,0,0,0.12);
+}
 
-/* responsive */
+.name{
+    font-weight:700;
+    color:#123;
+}
+
+.desc{
+    font-size:.9rem;
+    color:var(--muted);
+    margin-top:6px;
+}
+
+.badge{
+    position:absolute;
+    right:14px;
+    top:14px;
+    padding:6px 10px;
+    border-radius:999px;
+    font-size:.85rem;
+    font-weight:700;
+    color:#fff;
+}
+
+.trapped{background:var(--trap)}
+.free{background:var(--free)}
+
+/* FOOTER */
+.site-footer{
+    max-width:var(--max);
+    margin:20px auto 80px;
+    padding:12px 16px;
+    text-align:center;
+    color:var(--muted);
+    font-size:.9rem;
+}
+
+/* RESPONSIVO */
 @media (max-width:520px){
     h1{font-size:1.5rem}
     .criminals{grid-template-columns:1fr}
