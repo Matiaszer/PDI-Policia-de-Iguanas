@@ -37,6 +37,7 @@
             <p class="note">Listado con estado: "Atrapado" / "No atrapado".</p>
 
             <ul class="criminals">
+
                 <li>
                     <span class="name">El Escamas</span>
                     <span class="badge trapped">Atrapado</span>
@@ -72,6 +73,7 @@
                     <span class="badge trapped">Atrapado</span>
                     <p class="desc">Intentó congelar la laguna central — detenido por la Brigada Térmica.</p>
                 </li>
+
             </ul>
         </section>
 
@@ -91,11 +93,55 @@
 
         <p>Prohibida la reproducción, distribución o modificación sin autorización previa por escrito de Calama Ninollo o Moñoguñan &amp; Co.</p>
 
-        <p>Las marcas incluidas son propiedad de sus respectivos dueños y están protegidas por leyes internacionales.</p>
+        <p>Las marcas incluídas son propiedad de sus respectivos dueños y están protegidas por leyes internacionales.</p>
 
         <p>El contenido se entrega “tal cual”, sin garantías. Moñoguñan &amp; Co. no se hace responsable por daños derivados del uso de este material.</p>
 
         <p>Cualquier uso indebido será investigado por la Policía de Iguanas.</p>
     </footer>
+
+
+    <!-- ========== MODAL ========== -->
+    <div id="modal" class="modal hidden">
+        <div class="modal-content">
+            <span id="closeModal" class="close">&times;</span>
+            <h2 id="modalName"></h2>
+            <p id="modalStatus"></p>
+            <p id="modalDesc"></p>
+        </div>
+    </div>
+
+    <!-- ========== SCRIPT ========== -->
+    <script>
+        document.addEventListener("DOMContentLoaded", () => {
+            const modal = document.getElementById("modal");
+            const closeModal = document.getElementById("closeModal");
+
+            const modalName = document.getElementById("modalName");
+            const modalStatus = document.getElementById("modalStatus");
+            const modalDesc = document.getElementById("modalDesc");
+
+            document.querySelectorAll(".criminals li").forEach(item => {
+                item.addEventListener("click", () => {
+                    const name = item.querySelector(".name").innerText;
+                    const status = item.querySelector(".badge").innerText;
+                    const desc = item.querySelector(".desc").innerText;
+
+                    modalName.innerText = name;
+                    modalStatus.innerHTML = "<strong>Estado:</strong> " + status;
+                    modalDesc.innerText = desc;
+
+                    modal.classList.remove("hidden");
+                });
+            });
+
+            closeModal.addEventListener("click", () => modal.classList.add("hidden"));
+
+            modal.addEventListener("click", e => {
+                if (e.target === modal) modal.classList.add("hidden");
+            });
+        });
+    </script>
+
 </body>
 </html>
