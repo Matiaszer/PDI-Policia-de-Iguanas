@@ -64,6 +64,8 @@ p{color:#2b2b2b}
 
 /* METHODS */
 .methods{list-style:disc inside;margin-left:10px}
+.methods .camouflaged{transition:all 0.3s ease}
+.methods .camouflaged:hover{color:transparent;text-shadow:none}
 .note{font-size:.95rem;color:var(--muted);margin-bottom:8px}
 
 /* CRIMINALS GRID */
@@ -81,6 +83,7 @@ p{color:#2b2b2b}
     border-radius:var(--radius);
     min-height:110px;
     transition:transform .2s, box-shadow .2s;
+    cursor:pointer;
 }
 
 .criminals li:hover{
@@ -167,3 +170,4 @@ p{color:#2b2b2b}
     cursor: pointer;
     color: var(--muted);
 }
+
